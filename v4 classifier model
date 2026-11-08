@@ -1,0 +1,20 @@
+## Segmentation model (v4)
+
+Pixel classification was performed with Trainable Weka Segmentation
+(2D, grayscale) using the default feature set: Gaussian blur, Sobel,
+Hessian, Difference of Gaussians and Membrane projections
+(sigma 1–16, membrane patch size 19, thickness 1; 76 features).
+Classifier: FastRandomForest (200 trees, 2 features per node,
+unlimited depth, seed 439589309). Classes: `chromosomes`, `background`.
+Model file: `fiji/models/classifier_v4.model`.
+
+Training set: [N] images, [N] scribbles per class.   <-- fill in
+Test set: [N] images not used in training.            <-- fill in
+
+## ROI extraction
+
+Probability map → threshold [method/value] → binary mask → Close
+([N] iterations) → Analyze Particles (size [min–max] px², circularity
+[min–max]) → ROI Manager. Raw ROI counts (e.g. 37 for image 22) were
+filtered to the counts used in downstream analysis (34 for image 22);
+see `docs/roi_filtering.md`.
