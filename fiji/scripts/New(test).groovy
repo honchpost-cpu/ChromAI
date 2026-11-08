@@ -107,6 +107,14 @@ if (allFiles) {
 }
 if (files.isEmpty()) { IJ.error("No images found in " + dirPre); return }
 
+def stamp = new Date().format("yyyy-MM-dd HH:mm")
+new File(dirTabs, "run_settings.txt").append(
+  "${stamp} | ImageJ=${IJ.getFullVersion()} | classifier=${clsName} | class=${targetClass}" +
+  " | gauss=${doGauss}(${sigma}) | bg=${doBg}(${ballR}) | median=${doMedian}(${medR}) | normalize=${doNormalize}" +
+  " | fill=${doFill} | open=${doOpen} | watershed=${doWatershed}" +
+  " | minSize=${minSize} | maxSize=${maxSize} | minCirc=${minCirc} | exclEdges=${exclEdges}" +
+  " | files=${files.size()}\n")
+  
 // ---------- 4) PROCESSING ----------
 def oldBlackBg = Prefs.blackBackground
 Prefs.blackBackground = true
