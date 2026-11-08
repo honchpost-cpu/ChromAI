@@ -1,0 +1,34 @@
+# ==========================================
+# 3. CHROMOSOME LENGTH PROFILES
+# ==========================================
+
+fig, ax = plt.subplots(figsize=(12, 7))
+
+# C. ischnus
+for image_id, group in df_ischnus.groupby("ImageID"):
+    ax.plot(
+        group["Rank"],
+        group["RelFeretSum_adj"],
+        marker="o",
+        alpha=0.65,
+        label=f"C. ischnus — Image {image_id}"
+    )
+
+# G. fossarum
+for image_id, group in df_fossarum.groupby("ImageID"):
+    ax.plot(
+        group["Rank"],
+        group["RelativeLength"],
+        marker="o",
+        alpha=0.65,
+        linestyle="--",
+        label=f"G. fossarum — Image {image_id}"
+    )
+
+ax.set_xlabel("Chromosome rank")
+ax.set_ylabel("Relative chromosome length")
+ax.set_title("Chromosome-length profiles across metaphases")
+ax.legend(bbox_to_anchor=(1.02, 1), loc="upper left")
+
+plt.tight_layout()
+plt.show()
