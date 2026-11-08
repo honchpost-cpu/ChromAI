@@ -1,0 +1,37 @@
+# ==========================================
+#  METAPHASE-LEVEL SUMMARY FEATURES
+# ==========================================
+
+summary_rows = []
+
+for (species, image_id), group in profile.groupby(
+    ["Species", "ImageID"]
+):
+
+    values = group["RelativeLength"].values
+    values_sorted = np.sort(values)[::-1]
+
+    mean_rl = np.mean(values)
+    sd_rl = np.std(values, ddof=1)
+
+    row = {
+        "Species": species,
+        "ImageID": image_id,
+        "N_chromosomes": len(values),
+        "Mean_relative_length": mean_rl,
+        "SD_relative_length": sd_rl,
+        "CV_relative_length": sd_rl / mean_rl
+    }
+
+    # Cumulative concentration
+    for k in [5, 10, 20, 30]:
+        if len(values_sorted) >= k:
+            row[f"C{k}"] = values_sorted[:k].sum()
+        else:
+            row[f"C{k}"] = np.nan
+
+    summary_rows.append(row)
+
+summary = pd.DataFrame(summary_rows)
+
+print(summary.to_string(index=False))
