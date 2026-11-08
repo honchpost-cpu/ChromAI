@@ -76,7 +76,7 @@ Model file: `fiji/models/tws_v4.model`
 | Max depth | unlimited (0) |
 | Random seed | 439589309 |
 
-These are TWS default settings. Training set: [N] images; test set: [N] images not used for training.
+These are TWS default settings. Training set: [15] images; test set: [5] images not used for training.
 
 ### Evaluation rubric
 
@@ -117,10 +117,24 @@ Only v4 is released. Settings of v1–v3 and v5 were not recorded; they are repo
 
 Probability map → threshold [method/value] → binary mask → morphological cleanup (e.g. Close, [iterations]) → `Analyze Particles` (size [min–max] px², circularity [min–max], exclude on edges [yes/no]) → ROI Manager.
 
+Default settings (adjusted per image where plate quality required):
+Fill holes: on; Watershed: on; Open: off; min size 50 px²;
+max size: no limit; min circularity 0; exclude edges: off.
+Cosmetic filters (Gaussian, background subtraction, median,
+contrast normalization) were off; the classifier was applied to
+the pre-processed images from `preprocessed/`.
+
+Tuning guide:
+- touching chromosomes remain fused → keep Watershed on; raise min size if it over-splits
+- small debris counted as chromosomes → raise min size, or turn on Open
+- fragmented chromosomes → turn Watershed off, lower min size
+- objects at image border → turn on "Exclude objects on edges"
+
+  
 Measurements (`Set Measurements`): Area, Perimeter, Feret, MinFeret, fit ellipse, shape descriptors. Exported as CSV together with ROI sets.
 
 Raw ROI counts are filtered before downstream analysis (e.g. metaphase 22: 37 raw ROIs, 34 after filtering). Lengths are in pixels unless a scale is stated.
-
+ 
 ## Output and metrics
 
 | Metric | Definition |
