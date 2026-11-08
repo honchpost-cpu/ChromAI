@@ -1,1 +1,24 @@
+cff-version: 1.2.0
+message: "If you use ChromAI, please cite it as below."
+title: "ChromAI: semi-automated chromosome segmentation and morphometry pipeline"
+type: software
+version: 1.0.0
+date-released: 2026-11-08
+authors:
+  - family-names: Honcharova
+    given-names: Sofiia
+repository-code: "https://github.com/honchpost-cpu/ChromAI"
+license: MIT
+keywords:
+  - cytogenetics
+  - chromosome segmentation
+  - Trainable Weka Segmentation
+  - Fiji
+  - Gammarus fossarum
+  - Chaetogammarus ischnus
+abstract: >-
+  Fiji/ImageJ pipeline based on Trainable Weka Segmentation for
+  semi-automated segmentation and morphometry of chromosomes in
+  amphipod micrographs, with R/Python scripts for length normalization
+  and rank profiling.
 
