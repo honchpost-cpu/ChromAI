@@ -1,0 +1,59 @@
+# ==========================================
+# 1. BASIC DATA AUDIT
+# ==========================================
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Basic structure
+print("===== C. ISCHNUS =====")
+print(df_ischnus.shape)
+print(df_ischnus.dtypes)
+
+print("\n===== G. FOSSARUM =====")
+print(df_fossarum.shape)
+print(df_fossarum.dtypes)
+
+
+# ------------------------------------------
+# Missing values
+# ------------------------------------------
+
+print("\n===== MISSING VALUES: C. ISCHNUS =====")
+print(df_ischnus.isna().sum())
+
+print("\n===== MISSING VALUES: G. FOSSARUM =====")
+print(df_fossarum.isna().sum())
+
+
+# ------------------------------------------
+# Number of images
+# ------------------------------------------
+
+print("\n===== IMAGES =====")
+print("C. ischnus:")
+print(df_ischnus["ImageID"].value_counts().sort_index())
+
+print("\nG. fossarum:")
+print(df_fossarum["ImageID"].value_counts().sort_index())
+
+
+# ------------------------------------------
+# Number of chromosomes/ranks per image
+# ------------------------------------------
+
+print("\n===== RANK RANGE =====")
+
+print("\nC. ischnus:")
+print(
+    df_ischnus.groupby("ImageID")["Rank"]
+    .agg(["min", "max", "count"])
+)
+
+print("\nG. fossarum:")
+print(
+    df_fossarum.groupby("ImageID")["Rank"]
+    .agg(["min", "max", "count"])
+)
