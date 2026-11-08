@@ -28,9 +28,9 @@ micrograph → preprocessing → TWS pixel classification → probability map
 
 ## Requirements
 
-- Fiji/ImageJ: version [X.X.X] (Bio-Formats Importer, Trainable Weka Segmentation)
-- R: [version] with `tidyverse`
-- Python: [version] (see `environment/requirements.txt`, if present)
+- Fiji/ImageJ: version [- Fiji (ImageJ 1.54p), Java [1.8.0_452], Trainable Weka Segmentation 4.0.0 (plugin v. shown in Plugins > Segmentation)] (Bio-Formats Importer, Trainable Weka Segmentation)
+- R: [2026.08.0] with `tidyverse`
+- Python: [3.6.9] (see `environment/requirements.txt`, if present)
 
 ## Quick start
 
@@ -128,9 +128,9 @@ Raw ROI counts are filtered before downstream analysis (e.g. metaphase 22: 37 ra
 | `RelLen_norm` / `RelFeretSum_adj` | length of an object divided by the sum of lengths of all objects in the same image (sums to 1 per image) |
 | `SeqRank` | rank after sorting objects by relative length, descending (1 = largest) |
 | C10 | sum of relative lengths of the 10 largest objects |
-| AR | aspect ratio: [confirm: Feret/MinFeret or ellipse major/minor] |
-| CI | centromeric index: [confirm formula] |
-| Std RMSE | RMSE between length profiles resampled to normalized position (0 = longest, 1 = shortest): [confirm normalization] |
+| AR | aspect ratio | Feret | MinFeret | eclipse | major/minor |
+| CI | centromeric index: p/p+q *100% |
+| Std RMSE | RMSE between length profiles resampled to normalized position (0 = longest, 1 = shortest) |
 
 ## Reproducing the figures
 
